@@ -25,7 +25,7 @@
                         </tbody>
                     </table>
 
-
+                    @if(\Auth::check())
                     {{ Form::open(array('id'=>'comments' )) }}
                     <div class="form-group" >
                         <h3>Add Comment</h3>
@@ -43,7 +43,7 @@
                         {{ Form::submit('Comment',['class'=>'send btn btn-danger']) }}
                     </div>
                     {{ Form::close() }}
-
+                    @endif
 
                     <div class="col-md-12">
                         <hr>
@@ -102,7 +102,12 @@
                 type: "POST",
                 data: {'name':names,'description':description,'film_id':film_id, '_token': $('input[name=_token]').val()},
                 success: function(response){
-                    alert('works');
+                    if(response){
+                        alert('Comment Added');
+                    }else{
+                        alert('Error in Comment data');
+                    }
+
                 }
             });
         });

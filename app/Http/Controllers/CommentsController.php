@@ -35,9 +35,14 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $comment = new Comment($data);
-        $comment->save();
+        if (\Auth::check()) {
+            $data = $request->all();
+            $comment = new Comment($data);
+            $comment->save();
+            return "true";
+        }else{
+            return "false";
+        }
     }
 
     /**
