@@ -16,8 +16,8 @@ Route::redirect('/', '/films', 301);
 
 Auth::routes();
 
-Route::get('home', array('uses' => 'HomeController@index'));
 
 Route::resource('genres', 'GenresController');
 Route::resource('films', 'FilmsController');
 Route::resource('comments', 'CommentsController');
+//Route::resource('films/{slug}', 'FilmsController@index')->where(['slug' => '[A-Za-z-0-9]+[^-0-9.]+']);

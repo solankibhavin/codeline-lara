@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -34,7 +35,9 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $comment = new Comment($data);
+        $comment->save();
     }
 
     /**

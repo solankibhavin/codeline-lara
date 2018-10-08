@@ -20,7 +20,7 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description','films_id',
+        'name', 'description','film_id',
     ];
 
     public function Films(){

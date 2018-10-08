@@ -25,7 +25,7 @@
                         </div>
                         <div class="form-group">
                         {{ Form::label('description', 'Description') }}
-                        {{ Form::text('description','',['class' => 'form-control','required']) }}
+                        {{ Form::textarea('description','',['class' => 'form-control', 'rows'=>'2','required']) }}
                         </div>
                         <div class="form-group">
                         {{ Form::label('realease_date', 'Release Date') }}

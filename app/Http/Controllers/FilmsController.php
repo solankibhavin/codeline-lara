@@ -52,7 +52,8 @@ class FilmsController extends Controller
         if($request->file('photo')){
 
             $file = $request->file('photo');
-            $file->storeAs('photos',$file->getClientOriginalName());
+            //$file->storeAs('photos',$file->getClientOriginalName());
+            \Storage::disk('public')->put('photos', $file);
             $filename = 'photos/'.$file->getClientOriginalName();
         }
 
@@ -80,9 +81,18 @@ class FilmsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        //$films = Film::find($id);
+        $films = Film::whereSlug($slug)->with('comments')->first();
+        $pivotesGenres = \DB::table('genres')
+            ->join('pivotes', 'genres.id', '=', 'pivotes.genre_id')
+            ->select( 'genres.id','genres.name')
+            ->where('pivotes.film_id', $films->id)
+            ->get()->toArray();
+
+
+        return view('films.show', compact('films','pivotesGenres'));
     }
 
     /**
